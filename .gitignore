@@ -1,0 +1,8 @@
+fnv032
+fnv064
+fnv132
+fnv164
+fnv1a32
+fnv1a64
+*.o
+*.a
