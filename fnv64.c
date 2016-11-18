@@ -57,7 +57,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
-#include "longlong.h"
 #include "fnv.h"
 
 #define WIDTH 64	/* bit width of hash */
@@ -150,10 +149,6 @@ test_fnv64(enum fnv_type hash_type, Fnv64_t init_hval,
 	/*
 	 * print the vector
 	 */
-#if defined(HAVE_64BIT_LONG_LONG)
-	/*
-	 * HAVE_64BIT_LONG_LONG testing
-	 */
 	switch (code) {
 	case 0:		/* generate the test vector */
 	    printf("    { &fnv_test_str[%d], (Fnv64_t) 0x%016llxULL },\n",
@@ -207,6 +202,11 @@ test_fnv64(enum fnv_type hash_type, Fnv64_t init_hval,
 		    return tstnum;
 		}
 	    	break;
+
+        default:
+	    fprintf(stderr, "%s: hash type %d not implemented yet\n", program, hash_type);
+        exit(14);
+
 	    }
 	    break;
 
@@ -214,115 +214,13 @@ test_fnv64(enum fnv_type hash_type, Fnv64_t init_hval,
 	    fprintf(stderr, "%s: -m %d not implemented yet\n", program, code);
 	    exit(14);
     	}
-#else /* HAVE_64BIT_LONG_LONG */
-	/*
-	 * non HAVE_64BIT_LONG_LONG testing
-	 */
-	switch (code) {
-	case 0:		/* generate the test vector */
-	    printf("    { &fnv_test_str[%d], "
-	    	   "(Fnv64_t) {0x%08lxUL, 0x%08lxUL} },\n",
-	    	   tstnum-1,
-		   (hval.w32[0] & mask.w32[0]),
-		   (hval.w32[1] & mask.w32[1]));
-	    break;
-
-	case 1:		/* validate against test vector */
-	    switch (hash_type) {
-	    case FNV0_64:
-		if (((hval.w32[0] & mask.w32[0]) !=
-		     (fnv0_64_vector[tstnum-1].fnv0_64.w32[0] &
-		      mask.w32[0])) &&
-		    ((hval.w32[1] & mask.w32[1]) !=
-		     (fnv0_64_vector[tstnum-1].fnv0_64.w32[1] &
-		      mask.w32[1]))) {
-		    if (v_flag) {
-		    	fprintf(stderr, "%s: failed fnv0_64 test # %d\n",
-				program, tstnum);
-		    	fprintf(stderr, "%s: test # 1 is 1st test\n", program);
-			fprintf(stderr,
-			    "%s: expected 0x%08llx%08llx != "
-			    "generated: 0x%08llx%08llx\n",
-			    program,
-			    (hval.w32[0] & mask.w32[0]),
-			    (hval.w32[1] & mask.w32[1]),
-			    ((fnv0_64_vector[tstnum-1].fnv0_64.w32[0] &
-			     mask.w32[0])),
-			    ((fnv0_64_vector[tstnum-1].fnv0_64.w32[1] &
-			     mask.w32[1])));
-		    }
-		    return tstnum;
-		}
-	    	break;
-	    case FNV1_64:
-		if (((hval.w32[0] & mask.w32[0]) !=
-		     (fnv1_64_vector[tstnum-1].fnv1_64.w32[0] &
-		      mask.w32[0])) &&
-		    ((hval.w32[1] & mask.w32[1]) !=
-		     (fnv1_64_vector[tstnum-1].fnv1_64.w32[1] &
-		      mask.w32[1]))) {
-		    if (v_flag) {
-		    	fprintf(stderr, "%s: failed fnv1_64 test # %d\n",
-				program, tstnum);
-		    	fprintf(stderr, "%s: test # 1 is 1st test\n", program);
-			fprintf(stderr,
-			    "%s: expected 0x%08llx%08llx != "
-			    "generated: 0x%08llx%08llx\n",
-			    program,
-			    (hval.w32[0] & mask.w32[0]),
-			    (hval.w32[1] & mask.w32[1]),
-			    ((fnv1_64_vector[tstnum-1].fnv1_64.w32[0] &
-			     mask.w32[0])),
-			    ((fnv1_64_vector[tstnum-1].fnv1_64.w32[1] &
-			     mask.w32[1])));
-		    }
-		    return tstnum;
-		}
-	    	break;
-	    case FNV1a_64:
-		if (((hval.w32[0] & mask.w32[0]) !=
-		     (fnv1a_64_vector[tstnum-1].fnv1a_64.w32[0] &
-		      mask.w32[0])) &&
-		    ((hval.w32[1] & mask.w32[1]) !=
-		     (fnv1a_64_vector[tstnum-1].fnv1a_64.w32[1] &
-		      mask.w32[1]))) {
-		    if (v_flag) {
-		    	fprintf(stderr, "%s: failed fnv1a_64 test # %d\n",
-				program, tstnum);
-		    	fprintf(stderr, "%s: test # 1 is 1st test\n", program);
-			fprintf(stderr,
-			    "%s: expected 0x%08llx%08llx != "
-			    "generated: 0x%08llx%08llx\n",
-			    program,
-			    (hval.w32[0] & mask.w32[0]),
-			    (hval.w32[1] & mask.w32[1]),
-			    ((fnv1a_64_vector[tstnum-1].fnv1a_64.w32[0] &
-			     mask.w32[0])),
-			    ((fnv1a_64_vector[tstnum-1].fnv1a_64.w32[1] &
-			     mask.w32[1])));
-		    }
-		    return tstnum;
-		}
-	    	break;
-	    }
-	    break;
-
-    	default:
-	    fprintf(stderr, "%s: -m %d not implemented yet\n", program, code);
-	    exit(15);
-    	}
-#endif /* HAVE_64BIT_LONG_LONG */
     }
 
     /*
      * print completion if generating test vectors
      */
     if (code == 0) {
-#if defined(HAVE_64BIT_LONG_LONG)
 	printf("    { NULL, (Fnv64_t) 0 }\n");
-#else /* HAVE_64BIT_LONG_LONG */
-	printf("    { NULL, (Fnv64_t) {0,0} }\n");
-#endif /* HAVE_64BIT_LONG_LONG */
 	printf("};\n");
     }
 
@@ -416,24 +314,11 @@ main(int argc, char *argv[])
 		program, b_flag, WIDTH);
 	exit(6);
     }
-#if defined(HAVE_64BIT_LONG_LONG)
     if (b_flag == WIDTH) {
 	bmask = (Fnv64_t)0xffffffffffffffffULL;
     } else {
 	bmask = (Fnv64_t)((1ULL << b_flag) - 1ULL);
     }
-#else /* HAVE_64BIT_LONG_LONG */
-    if (b_flag == WIDTH) {
-	bmask.w32[0] = 0xffffffffUL;
-	bmask.w32[1] = 0xffffffffUL;
-    } else if (b_flag >= WIDTH/2) {
-	bmask.w32[0] = 0xffffffffUL;
-	bmask.w32[1] = ((1UL << (b_flag-(WIDTH/2))) - 1UL);
-    } else {
-	bmask.w32[0] = ((1UL << b_flag) - 1UL);
-	bmask.w32[1] = 0UL;
-    }
-#endif /* HAVE_64BIT_LONG_LONG */
 
     /*
      * start with the initial basis depending on the hash type

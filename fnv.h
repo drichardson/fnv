@@ -113,21 +113,9 @@ typedef u_int32_t Fnv32_t;
 
 
 /*
- * determine how 64 bit unsigned values are represented
- */
-#include "longlong.h"
-
-
-/*
  * 64 bit FNV-0 hash
  */
-#if defined(HAVE_64BIT_LONG_LONG)
-typedef u_int64_t Fnv64_t;
-#else /* HAVE_64BIT_LONG_LONG */
-typedef struct {
-    u_int32_t w32[2]; /* w32[0] is low order, w32[1] is high order word */
-} Fnv64_t;
-#endif /* HAVE_64BIT_LONG_LONG */
+typedef uint64_t Fnv64_t;
 
 
 /*
@@ -136,12 +124,7 @@ typedef struct {
  * This historic hash is not recommended.  One should use
  * the FNV-1 hash and initial basis instead.
  */
-#if defined(HAVE_64BIT_LONG_LONG)
 #define FNV0_64_INIT ((Fnv64_t)0)
-#else /* HAVE_64BIT_LONG_LONG */
-extern const Fnv64_t fnv0_64_init;
-#define FNV0_64_INIT (fnv0_64_init)
-#endif /* HAVE_64BIT_LONG_LONG */
 
 
 /*
@@ -156,15 +139,8 @@ extern const Fnv64_t fnv0_64_init;
  *
  * NOTE: The FNV-1a initial basis is the same value as FNV-1 by definition.
  */
-#if defined(HAVE_64BIT_LONG_LONG)
 #define FNV1_64_INIT ((Fnv64_t)0xcbf29ce484222325ULL)
 #define FNV1A_64_INIT FNV1_64_INIT
-#else /* HAVE_64BIT_LONG_LONG */
-extern const fnv1_64_init;
-extern const Fnv64_t fnv1a_64_init;
-#define FNV1_64_INIT (fnv1_64_init)
-#define FNV1A_64_INIT (fnv1a_64_init)
-#endif /* HAVE_64BIT_LONG_LONG */
 
 
 /*

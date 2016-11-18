@@ -57,7 +57,6 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
-#include "longlong.h"
 #include "fnv.h"
 
 #define WIDTH 32		/* bit width of hash */
