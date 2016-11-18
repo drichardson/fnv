@@ -1,40 +1,36 @@
-This repository is the FNV reference source published by Landon Curt Noll
-with modifications to make it easier to include in my own projects.
+[![Build Status](https://travis-ci.org/drichardson/fnv.svg?branch=master)](https://travis-ci.org/drichardson/fnv)
 
-    http://isthe.com/chongo/tech/comp/fnv/#FNV-reference-source
+This repository is based on the
+[FNV reference source](http://isthe.com/chongo/tech/comp/fnv/#FNV-reference-source)
+published by Landon Curt Noll with modifications to make it easier to include in my own projects.
 
-#=====================#
-# Fowler/Noll/Vo hash #
-#=====================#
+    
+
+# Fowler/Noll/Vo hash
 
 The basis of this hash algorithm was taken from an idea sent
 as reviewer comments to the IEEE POSIX P1003.2 committee by:
 
-     Phong Vo (http://www.research.att.com/info/kpv)
-     Glenn Fowler (http://www.research.att.com/~gsf/)
+- [Phong Vo](http://www.research.att.com/info/kpv)
+- [Glenn Fowler](http://www.research.att.com/~gsf/)
 
 In a subsequent ballot round:
 
-     Landon Curt Noll (http://www.isthe.com/chongo)
+- [Landon Curt Noll](http://www.isthe.com/chongo)
 
 improved on their algorithm.  Some people tried this hash
 and found that it worked rather well.  In an EMail message
-to Landon, they named it the ``Fowler/Noll/Vo'' or FNV hash.
+to Landon, they named it the *Fowler/Noll/Vo* or *FNV* hash.
 
 FNV hashes are designed to be fast while maintaining a low
 collision rate. The FNV speed allows one to quickly hash lots
-of data while maintaining a reasonable collision rate.  See:
-
-     http://www.isthe.com/chongo/tech/comp/fnv/index.html
-
+of data while maintaining a reasonable collision rate. [See here](http://www.isthe.com/chongo/tech/comp/fnv/index.html)
 for more details as well as other forms of the FNV hash.
 Comments, questions, bug fixes and suggestions welcome at
 the address given in the above URL.
 
 
-#==================#
-# FNV hash utility #
-#==================#
+# FNV hash utility
 
 Two hash utilities (32 bit and 64 bit) are provided:
 
@@ -75,9 +71,7 @@ If you are compiling, try:
 	make check
 
 
-#==================#
-# FNV hash library #
-#==================#
+# FNV hash library
 
 The libfnv.a library implements both a 32 bit and a 64 bit FNV hash
 on collections of bytes, a NUL terminated strings or on an open file
@@ -134,7 +128,7 @@ produces the same final hash value as:
 
 	hash_val = fnv_64_str("a stringmore string", FNV1_64_INIT);
 
-NOTE: If one used 'FNV0_64_INIT' instead of 'FNV1_64_INIT' one would get the
+NOTE: If one used `FNV0_64_INIT` instead of `FNV1_64_INIT` one would get the
       historic FNV-0 hash instead recommended FNV-1 hash.
 
 To perform a 32 bit FNV-1 hash:
