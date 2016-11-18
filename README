@@ -1,3 +1,8 @@
+This repository is the FNV reference source published by Landon Curt Noll
+with modifications to make it easier to include in my own projects.
+
+    http://isthe.com/chongo/tech/comp/fnv/#FNV-reference-source
+
 #=====================#
 # Fowler/Noll/Vo hash #
 #=====================#
