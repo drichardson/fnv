@@ -192,8 +192,6 @@ clean:
 	-rm -f have_ulong64 have_ulong64.o ll_tmp ll_tmp2 longlong.h
 	-rm -f ${LIBOBJ}
 	-rm -f ${OTHEROBJ}
-
-clobber: clean
 	-rm -f ${TARGETS}
 	-rm -f ${OBSOLETE_PROGS} lltmp lltmp2 ll_tmp
 	-rm -f ${NO64BIT_SRC}
