@@ -30,7 +30,7 @@
 # make tools
 #
 SHELL= /bin/sh
-CFLAGS= -O3 -g3
+CFLAGS= -O3 -g3 -Werror
 #CFLAGS= -O2 -g3
 #CC= cc
 AR= ar

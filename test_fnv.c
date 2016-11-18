@@ -51,6 +51,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "fnv.h"
 
 #define LEN(x) (sizeof(x)-1)
@@ -1569,9 +1570,9 @@ void
 print_fnv32(Fnv32_t hval, Fnv32_t mask, int verbose, char *arg)
 {
     if (verbose) {
-	printf("0x%08lx %s\n", hval & mask, arg);
+	printf("0x%08x %s\n", hval & mask, arg);
     } else {
-	printf("0x%08lx\n", hval & mask);
+	printf("0x%08x\n", hval & mask);
     }
 }
 
