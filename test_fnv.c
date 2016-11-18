@@ -50,6 +50,7 @@
  * Share and Enjoy!	:-)
  */
 
+#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "fnv.h"
@@ -1590,8 +1591,8 @@ void
 print_fnv64(Fnv64_t hval, Fnv64_t mask, int verbose, char *arg)
 {
     if (verbose) {
-	printf("0x%016llx %s\n", hval & mask, arg);
+	printf("0x%016" PRIx64 " %s\n", hval & mask, arg);
     } else {
-	printf("0x%016llx\n", hval & mask);
+	printf("0x%016" PRIx64 "\n", hval & mask);
     }
 }

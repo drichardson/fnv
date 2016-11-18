@@ -50,6 +50,7 @@
  * Share and Enjoy!	:-)
  */
 
+#include <inttypes.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -151,7 +152,7 @@ test_fnv64(enum fnv_type hash_type, Fnv64_t init_hval,
 	 */
 	switch (code) {
 	case 0:		/* generate the test vector */
-	    printf("    { &fnv_test_str[%d], (Fnv64_t) 0x%016llxULL },\n",
+	    printf("    { &fnv_test_str[%d], (Fnv64_t) 0x%016" PRIx64 "ULL },\n",
 	    	   tstnum-1, hval & mask);
 	    break;
 
@@ -164,7 +165,7 @@ test_fnv64(enum fnv_type hash_type, Fnv64_t init_hval,
 				program, tstnum);
 		    	fprintf(stderr, "%s: test # 1 is 1st test\n", program);
 			fprintf(stderr,
-			    "%s: expected 0x%016llx != generated: 0x%016llx\n",
+			    "%s: expected 0x%016" PRIx64 " != generated: 0x%016" PRIx64 "\n",
 			    program,
 			    (hval&mask),
 			    (fnv0_64_vector[tstnum-1].fnv0_64 & mask));
@@ -179,7 +180,7 @@ test_fnv64(enum fnv_type hash_type, Fnv64_t init_hval,
 				program, tstnum);
 		    	fprintf(stderr, "%s: test # 1 is 1st test\n", program);
 			fprintf(stderr,
-			    "%s: expected 0x%016llx != generated: 0x%016llx\n",
+			    "%s: expected 0x%016" PRIx64 " != generated: 0x%016" PRIx64 "\n",
 			    program,
 			    (hval&mask),
 			    (fnv1_64_vector[tstnum-1].fnv1_64 & mask));
@@ -194,7 +195,7 @@ test_fnv64(enum fnv_type hash_type, Fnv64_t init_hval,
 				program, tstnum);
 		    	fprintf(stderr, "%s: test # 1 is 1st test\n", program);
 			fprintf(stderr,
-			    "%s: expected 0x%016llx != generated: 0x%016llx\n",
+			    "%s: expected 0x%016" PRIx64 " != generated: 0x%016" PRIx64 "\n",
 			    program,
 			    (hval&mask),
 			    (fnv1a_64_vector[tstnum-1].fnv1a_64 & mask));
