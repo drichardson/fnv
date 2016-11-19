@@ -88,7 +88,7 @@
  *	 argument on the first call to either fnv_32_buf() or fnv_32_str().
  */
 Fnv32_t
-fnv_32_buf(void *buf, size_t len, Fnv32_t hval)
+fnv_32_buf(const void *buf, size_t len, Fnv32_t hval)
 {
     unsigned char *bp = (unsigned char *)buf;	/* start of buffer */
     unsigned char *be = bp + len;		/* beyond end of buffer */
@@ -131,9 +131,9 @@ fnv_32_buf(void *buf, size_t len, Fnv32_t hval)
  *	 argument on the first call to either fnv_32_buf() or fnv_32_str().
  */
 Fnv32_t
-fnv_32_str(char *str, Fnv32_t hval)
+fnv_32_str(const char *str, Fnv32_t hval)
 {
-    unsigned char *s = (unsigned char *)str;	/* unsigned string */
+    const unsigned char *s = (const unsigned char *)str;	/* unsigned string */
 
     /*
      * FNV-1 hash each octet in the buffer

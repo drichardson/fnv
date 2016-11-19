@@ -1551,7 +1551,7 @@ struct fnv1a_64_test_vector fnv1a_64_vector[] = {
  * NOTE: Does not return.
  */
 void
-unknown_hash_type(char *prog, enum fnv_type type, int code)
+unknown_hash_type(const char *prog, enum fnv_type type, int code)
 {
     fprintf(stderr, "%s: unknown or unexpexted hash type: %d\n", prog, type);
     exit(code);

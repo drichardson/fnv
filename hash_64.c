@@ -89,10 +89,10 @@
  *	 argument on the first call to either fnv_64_buf() or fnv_64_str().
  */
 Fnv64_t
-fnv_64_buf(void *buf, size_t len, Fnv64_t hval)
+fnv_64_buf(const void *buf, size_t len, Fnv64_t hval)
 {
-    unsigned char *bp = (unsigned char *)buf;	/* start of buffer */
-    unsigned char *be = bp + len;		/* beyond end of buffer */
+    const unsigned char *bp = (const unsigned char *)buf;	/* start of buffer */
+    const unsigned char *be = bp + len;		/* beyond end of buffer */
 
     /*
      * FNV-1 hash each octet of the buffer
@@ -133,9 +133,9 @@ fnv_64_buf(void *buf, size_t len, Fnv64_t hval)
  *	 argument on the first call to either fnv_64_buf() or fnv_64_str().
  */
 Fnv64_t
-fnv_64_str(char *str, Fnv64_t hval)
+fnv_64_str(const char *str, Fnv64_t hval)
 {
-    unsigned char *s = (unsigned char *)str;	/* unsigned string */
+    const unsigned char *s = (const unsigned char *)str;	/* unsigned string */
 
     /*
      * FNV-1 hash each octet of the string

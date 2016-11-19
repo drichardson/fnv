@@ -194,20 +194,20 @@ struct fnv1a_64_test_vector {
  * external functions
  */
 /* hash_32.c */
-extern Fnv32_t fnv_32_buf(void *buf, size_t len, Fnv32_t hashval);
-extern Fnv32_t fnv_32_str(char *buf, Fnv32_t hashval);
+extern Fnv32_t fnv_32_buf(const void *buf, size_t len, Fnv32_t hashval);
+extern Fnv32_t fnv_32_str(const char *buf, Fnv32_t hashval);
 
 /* hash_32a.c */
-extern Fnv32_t fnv_32a_buf(void *buf, size_t len, Fnv32_t hashval);
-extern Fnv32_t fnv_32a_str(char *buf, Fnv32_t hashval);
+extern Fnv32_t fnv_32a_buf(const void *buf, size_t len, Fnv32_t hashval);
+extern Fnv32_t fnv_32a_str(const char *buf, Fnv32_t hashval);
 
 /* hash_64.c */
-extern Fnv64_t fnv_64_buf(void *buf, size_t len, Fnv64_t hashval);
-extern Fnv64_t fnv_64_str(char *buf, Fnv64_t hashval);
+extern Fnv64_t fnv_64_buf(const void *buf, size_t len, Fnv64_t hashval);
+extern Fnv64_t fnv_64_str(const char *buf, Fnv64_t hashval);
 
 /* hash_64a.c */
-extern Fnv64_t fnv_64a_buf(void *buf, size_t len, Fnv64_t hashval);
-extern Fnv64_t fnv_64a_str(char *buf, Fnv64_t hashval);
+extern Fnv64_t fnv_64a_buf(const void *buf, size_t len, Fnv64_t hashval);
+extern Fnv64_t fnv_64a_str(const char *buf, Fnv64_t hashval);
 
 /* test_fnv.c */
 extern struct test_vector fnv_test_str[];
@@ -217,7 +217,7 @@ extern struct fnv1a_32_test_vector fnv1a_32_vector[];
 extern struct fnv0_64_test_vector fnv0_64_vector[];
 extern struct fnv1_64_test_vector fnv1_64_vector[];
 extern struct fnv1a_64_test_vector fnv1a_64_vector[];
-extern void unknown_hash_type(char *prog, enum fnv_type type, int code);
+extern void unknown_hash_type(const char *prog, enum fnv_type type, int code);
 extern void print_fnv32(Fnv32_t hval, Fnv32_t mask, int verbose, char *arg);
 extern void print_fnv64(Fnv64_t hval, Fnv64_t mask, int verbose, char *arg);
 
