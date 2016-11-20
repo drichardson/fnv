@@ -330,15 +330,15 @@ main(int argc, char *argv[])
     } else {
 	++p;
     }
-    if (strcmp(p, "fnv064") == 0 || strcmp(p, "no64bit_fnv064") == 0) {
+    if (strcmp(p, "fnv064") == 0) {
 	/* using non-recommended FNV-0 and zero initial basis */
 	hval = FNV0_64_INIT;
 	hash_type = FNV0_64;
-    } else if (strcmp(p, "fnv164") == 0 || strcmp(p, "no64bit_fnv164") == 0) {
+    } else if (strcmp(p, "fnv164") == 0) {
 	/* using FNV-1 and non-zero initial basis */
 	hval = FNV1_64_INIT;
 	hash_type = FNV1_64;
-    } else if (strcmp(p, "fnv1a64") == 0 || strcmp(p, "no64bit_fnv1a64") == 0) {
+    } else if (strcmp(p, "fnv1a64") == 0) {
 	 /* start with the FNV-1a initial basis */
 	hval = FNV1A_64_INIT;
 	hash_type = FNV1a_64;

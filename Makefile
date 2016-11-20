@@ -62,7 +62,6 @@ HSRC=	fnv.h
 ALL=	${SRC} ${HSRC} \
 	README Makefile
 PROGS=	fnv032 fnv064 fnv132 fnv164 fnv1a32 fnv1a64
-NO64BIT_PROGS= no64bit_fnv064 no64bit_fnv164 no64bit_fnv1a64
 LIBS=	libfnv.a
 LIBOBJ=	hash_32.o hash_64.o hash_32a.o hash_64a.o test_fnv.o
 OTHEROBJ= fnv32.o fnv64.o
